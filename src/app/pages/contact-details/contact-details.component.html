@@ -1,0 +1,24 @@
+@if(contact()) {
+    <p-fieldset legend="Info">
+        <dl>
+            <dt>Nom</dt>
+            <dd>{{contact().lastName}}</dd>
+            <dt>Prénom</dt>
+            <dd>{{contact().firstName}}</dd>
+            <dt>Email</dt>
+            <dd>{{contact().email}}</dd>
+            <dt>Téléphone</dt>
+            <dd>{{contact().tel}}</dd>
+            <dt>Type</dt>
+            <dd>{{contact().typeName}}</dd>
+        </dl>
+    </p-fieldset>
+
+    <p-fieldset legend="Adresses">
+        <ul>
+            @for (ad of contact().addresses; track $index) {
+                <li [ngClass]="{ main: ad.main }">{{ad.number}}, {{ad.street}} {{ad.zipCode}} {{ad.city}}</li>
+            }
+        </ul>
+    </p-fieldset>
+}

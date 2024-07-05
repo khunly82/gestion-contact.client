@@ -1,0 +1,38 @@
+<div class="mb-5">
+    <p-button [routerLink]="['/add']" label="Nouveau Contact" icon="pi pi-plus"></p-button>
+</div>
+
+<p-table [value]="contacts()">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-contact>
+        <tr>
+            <td>{{contact.lastName}}</td>
+            <td>{{contact.firstName}}</td>
+            <td>{{contact.typeName}}</td>
+            <td>
+                <p-button rounded 
+                          outlined 
+                          severity="primary"
+                          [routerLink]="['/details', contact.id]" 
+                          icon="pi pi-search"></p-button>
+                <p-button rounded 
+                          outlined 
+                          severity="warning"
+                          [routerLink]="['/update', contact.id]"
+                          icon="pi pi-pencil"></p-button>
+                <p-button rounded 
+                          outlined 
+                          severity="danger"
+                          icon="pi pi-trash"
+                          (onClick)="delete(contact)"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

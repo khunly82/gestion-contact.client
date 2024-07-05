@@ -1,0 +1,79 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <p-fieldset legend="Info Contact">
+        <div class="my-5">
+            <p-floatLabel>
+                <input pInputText formControlName="lastName">
+                <label>Nom</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-5">
+            <p-floatLabel>
+                <input pInputText formControlName="firstName">
+                <label>Prénom</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-5">
+            <p-floatLabel>
+                <input type="email" pInputText formControlName="email">
+                <label>Email</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-5">
+            <p-floatLabel>
+                <input pInputText formControlName="tel">
+                <label>Téléphone</label>
+            </p-floatLabel>
+        </div>
+        <div class="my-5">
+            <p-floatLabel>
+                <p-dropdown [options]="types()" 
+                            optionLabel="intitule" 
+                            optionValue="id"
+                            formControlName="typeId"></p-dropdown>
+                <label>Type</label>
+            </p-floatLabel>
+        </div>
+    </p-fieldset>
+
+    <p-fieldset legend="Addresses" formArrayName="addresses">
+        <p-button (onClick)="addAddress()" label="Ajouter une addresse"></p-button>
+        @for (ad of getAddresses().controls; let i = $index; track $index) {
+            <div [formGroupName]="i">
+                <div class="my-5">
+                    <p-floatLabel>
+                        <input pInputText formControlName="street">
+                        <label>Rue</label>
+                    </p-floatLabel>
+                </div>
+                <div class="my-5">
+                    <p-floatLabel>
+                        <input pInputText formControlName="number">
+                        <label>Numero</label>
+                    </p-floatLabel>
+                </div>
+                <div class="my-5">
+                    <p-floatLabel>
+                        <input pInputText formControlName="zipCode">
+                        <label>Code Postal</label>
+                    </p-floatLabel>
+                </div>
+                <div class="my-5">
+                    <p-floatLabel>
+                        <input pInputText formControlName="city">
+                        <label>Ville</label>
+                    </p-floatLabel>
+                </div>
+                <div class="my-5">
+                    <p-floatLabel>
+                        <input type="checkbox" formControlName="main">
+                        <label>Adresse Principale</label>
+                    </p-floatLabel>
+                </div>
+            </div>
+        }
+    </p-fieldset>
+
+    <div class="my-5">
+        <p-button type="submit" icon="pi pi-send" label="Envoyer"></p-button>
+    </div>
+</form>
